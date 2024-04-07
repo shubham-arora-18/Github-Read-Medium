@@ -6,8 +6,6 @@ async function getArticlesByUsername(username) {
     const result = await axios.get(mediumURL + username);
     const filteredResult = result.data.items.filter(
       (item) =>
-        (!item.thumbnail.includes("stat?event") ||
-          !item.thumbnail.includes("&referrerSource")) &&
         item.categories.length > 0
     );
     return filteredResult;

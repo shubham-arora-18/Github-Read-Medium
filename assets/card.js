@@ -1,8 +1,9 @@
 require("../common/config");
-const { parseImgToDataURL: imgToDataURL, dateFormat, measureReadingTime } = require("../common/utils");
+const { parseImgToDataURL: imgToDataURL, dateFormat, measureReadingTime, getFirstImageFromHTML } = require("../common/utils");
 
 const mediumCard = async (data, settings, index) => {
-  const result = await imgToDataURL(data.thumbnail);
+  const firstImageURL = getFirstImageFromHTML(data.content);
+  const result = await imgToDataURL(firstImageURL);
   const blogImage = "data:image/png;base64," + result.toString("base64");
   const blogDate = await dateFormat(data.pubDate);
   const blogLink = data.link;

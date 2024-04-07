@@ -1,5 +1,12 @@
 const axios = require("axios");
 const sharp = require("sharp");
+const cheerio = require('cheerio');
+
+function getFirstImageFromHTML(html) {
+  const $ = cheerio.load(html);
+  const firstImage = $('img').first().attr('src');
+  return firstImage;
+}
 
 const ansiWordBound = (c) => (
   (' ' === c) ||
@@ -75,4 +82,4 @@ const asyncForEach = async (array, settings, callback) => {
   }
 };
 
-module.exports = { parseImgToDataURL: parseImgToDataURL, asyncForEach, dateFormat, measureReadingTime };
+module.exports = { parseImgToDataURL: parseImgToDataURL, asyncForEach, dateFormat, measureReadingTime, getFirstImageFromHTML };
