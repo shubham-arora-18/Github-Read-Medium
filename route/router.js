@@ -13,7 +13,7 @@ router.get("/latest", async (request, response) => {
         response.end();
         return;
       }
-  
+      console.log("username= "+request.query.username)
       const result = await parseToMediumCard(request);
   
       response.setHeader(
