@@ -3,6 +3,7 @@ var router = require("express").Router();
 
 router.get("/latest", async (request, response) => {
     try {
+      console.log("Shubham logging")
       if (!request.query.username) {
         response.write(
           JSON.stringify({
